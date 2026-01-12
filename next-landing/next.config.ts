@@ -5,9 +5,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // If deploying to a subpath like username.github.io/repo-name, uncomment:
-  // basePath: "/your-repo-name",
-  // assetPrefix: "/your-repo-name/",
+  basePath: "/Landing-Page-Car-Rental",
+  assetPrefix: "/Landing-Page-Car-Rental/",
+  trailingSlash: true,
 };
 
 export default nextConfig;
