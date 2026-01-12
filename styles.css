@@ -6,8 +6,8 @@
 
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: #0a0a0f;
-    color: white;
+    background: #ffffff;
+    color: #1f2937;
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -28,8 +28,9 @@ body {
     right: 0;
     z-index: 50;
     backdrop-filter: blur(20px);
-    background: rgba(10, 10, 15, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .header-content {
@@ -44,7 +45,7 @@ body {
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: white;
+    color: #1f2937;
 }
 
 .logo-icon {
@@ -57,6 +58,7 @@ body {
     justify-content: center;
     font-weight: 800;
     font-size: 18px;
+    color: white;
 }
 
 .logo-title {
@@ -67,7 +69,7 @@ body {
 
 .logo-subtitle {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
+    color: #6b7280;
 }
 
 .nav {
@@ -77,14 +79,15 @@ body {
 }
 
 .nav a {
-    color: rgba(255, 255, 255, 0.7);
+    color: #6b7280;
     text-decoration: none;
     font-size: 14px;
+    font-weight: 500;
     transition: color 0.2s;
 }
 
 .nav a:hover {
-    color: white;
+    color: #1f2937;
 }
 
 /* Buttons */
@@ -93,7 +96,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px 20px;
-    border-radius: 9999px;
+    border-radius: 12px;
     font-weight: 600;
     text-decoration: none;
     border: 1px solid transparent;
@@ -110,47 +113,42 @@ body {
 .btn-primary {
     background: linear-gradient(135deg, #06b6d4, #2563eb);
     color: white;
-    box-shadow: 0 14px 36px rgba(6, 182, 212, 0.25);
+    box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
 }
 
 .btn-primary:hover {
-    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
 }
 
 .btn-ghost {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    color: #475569;
 }
 
 .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #f1f5f9;
+    border-color: #cbd5e1;
 }
 
 /* Hero Section */
 .hero {
     position: relative;
     padding: 128px 0 80px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f8fafc 100%);
     overflow: hidden;
 }
 
-.hero-bg {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at top, rgba(6, 182, 212, 0.15), transparent 50%);
-}
-
-.hero-bg::after {
+.hero::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px;
-    height: 800px;
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(37, 99, 235, 0.1));
-    border-radius: 50%;
-    filter: blur(60px);
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e2e8f0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.5;
 }
 
 .hero-content {
@@ -166,12 +164,13 @@ body {
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    background: #ecfdf5;
+    border: 1px solid #d1fae5;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
+    color: #065f46;
     margin-bottom: 32px;
+    font-weight: 500;
 }
 
 .badge-dot {
@@ -189,10 +188,11 @@ body {
 
 .hero-title {
     font-size: 64px;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: 24px;
+    color: #0f172a;
 }
 
 .gradient-text {
@@ -204,7 +204,7 @@ body {
 
 .hero-desc {
     font-size: 18px;
-    color: rgba(255, 255, 255, 0.6);
+    color: #64748b;
     max-width: 500px;
     margin-bottom: 32px;
     line-height: 1.6;
@@ -231,11 +231,12 @@ body {
     font-size: 32px;
     font-weight: 700;
     line-height: 1;
+    color: #0f172a;
 }
 
 .stat-label {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
+    color: #64748b;
     margin-top: 4px;
 }
 
@@ -247,19 +248,9 @@ body {
     position: relative;
     border-radius: 24px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-}
-
-.hero-image::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(37, 99, 235, 0.2));
-    border-radius: 24px;
-    filter: blur(40px);
-    z-index: -1;
+    border: 1px solid #e2e8f0;
+    background: white;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .hero-image img {
@@ -270,9 +261,9 @@ body {
 
 /* Stats Bar */
 .stats-bar {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
     padding: 32px 0;
 }
 
@@ -293,18 +284,19 @@ body {
 
 .stats-value {
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
+    color: #0f172a;
     margin-bottom: 4px;
 }
 
 .stats-label {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
+    color: #64748b;
 }
 
 /* Fleet Section */
 .fleet {
     padding: 96px 0;
+    background: white;
 }
 
 .section-header {
@@ -314,14 +306,16 @@ body {
 
 .section-header h2 {
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 16px;
+    color: #0f172a;
 }
 
 .section-header p {
-    color: rgba(255, 255, 255, 0.6);
+    color: #64748b;
     max-width: 600px;
     margin: 0 auto;
+    font-size: 18px;
 }
 
 .filter-tabs {
@@ -334,10 +328,10 @@ body {
 
 .filter-tab {
     padding: 10px 20px;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.7);
+    border-radius: 50px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: #64748b;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -349,27 +343,52 @@ body {
     background: linear-gradient(135deg, #06b6d4, #2563eb);
     color: white;
     border-color: transparent;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
 }
 
 .cars-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 24px;
-    margin-bottom: 40px;
 }
 
 .car-card {
     position: relative;
     padding: 24px;
-    border-radius: 16px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    background: white;
+    border: 1px solid #e2e8f0;
     transition: all 0.3s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .car-card:hover {
-    border-color: rgba(6, 182, 212, 0.3);
-    transform: translateY(-2px);
+    border-color: #06b6d4;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.car-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-size: 14px;
+    border: 2px dashed #cbd5e1;
+    overflow: hidden;
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .car-header {
@@ -381,51 +400,48 @@ body {
 
 .car-category {
     padding: 4px 12px;
-    border-radius: 9999px;
+    border-radius: 50px;
     font-size: 12px;
-    font-weight: 500;
-    border: 1px solid;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .car-category.economy {
-    background: rgba(16, 185, 129, 0.2);
-    color: #10b981;
-    border-color: rgba(16, 185, 129, 0.3);
+    background: #ecfdf5;
+    color: #065f46;
 }
 
 .car-category.sedan {
-    background: rgba(59, 130, 246, 0.2);
-    color: #3b82f6;
-    border-color: rgba(59, 130, 246, 0.3);
+    background: #eff6ff;
+    color: #1e40af;
 }
 
 .car-category.mpv {
-    background: rgba(245, 158, 11, 0.2);
-    color: #f59e0b;
-    border-color: rgba(245, 158, 11, 0.3);
+    background: #fef3c7;
+    color: #92400e;
 }
 
 .car-category.suv {
-    background: rgba(168, 85, 247, 0.2);
-    color: #a855f7;
-    border-color: rgba(168, 85, 247, 0.3);
+    background: #f3e8ff;
+    color: #7c2d12;
 }
 
 .car-category.premium {
-    background: rgba(244, 63, 94, 0.2);
-    color: #f43f5e;
-    border-color: rgba(244, 63, 94, 0.3);
+    background: #fdf2f8;
+    color: #be185d;
 }
 
 .car-name {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     margin: 12px 0 4px;
+    color: #0f172a;
 }
 
 .car-details {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
+    color: #64748b;
 }
 
 .car-pricing {
@@ -436,24 +452,27 @@ body {
 }
 
 .price-box {
-    background: rgba(255, 255, 255, 0.05);
+    background: #f8fafc;
     border-radius: 12px;
     padding: 16px;
+    border: 1px solid #e2e8f0;
 }
 
 .price-label {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
+    color: #64748b;
     margin-bottom: 4px;
+    font-weight: 500;
 }
 
 .price-value {
     font-size: 20px;
     font-weight: 700;
+    color: #0f172a;
 }
 
 .price-box:first-child .price-value {
-    color: #06b6d4;
+    color: #0891b2;
 }
 
 .car-actions {
@@ -467,31 +486,10 @@ body {
     padding: 12px 16px;
 }
 
-.rate-sheet-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    gap: 16px;
-}
-
-.rate-sheet-card h3 {
-    font-weight: 600;
-    margin-bottom: 4px;
-}
-
-.rate-sheet-card p {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
-}
-
 /* How It Works */
 .how-it-works {
     padding: 96px 0;
-    background: linear-gradient(180deg, transparent, rgba(6, 182, 212, 0.05), transparent);
+    background: #f8fafc;
 }
 
 .steps-grid {
@@ -503,32 +501,35 @@ body {
 .step {
     position: relative;
     padding: 32px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .step-number {
     font-size: 80px;
     font-weight: 800;
-    color: rgba(6, 182, 212, 0.2);
+    color: #e2e8f0;
     line-height: 1;
     margin-bottom: 16px;
 }
 
 .step h3 {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 8px;
+    color: #0f172a;
 }
 
 .step p {
-    color: rgba(255, 255, 255, 0.6);
+    color: #64748b;
 }
 
 /* Booking Section */
 .booking {
     padding: 96px 0;
+    background: white;
 }
 
 .booking-grid {
@@ -540,18 +541,20 @@ body {
 .booking-form {
     padding: 32px;
     border-radius: 24px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: white;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .booking-form h2 {
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 8px;
+    color: #0f172a;
 }
 
 .booking-form > p {
-    color: rgba(255, 255, 255, 0.6);
+    color: #64748b;
     margin-bottom: 32px;
 }
 
@@ -569,8 +572,8 @@ body {
 .booking-form label span {
     display: block;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 500;
+    color: #374151;
+    font-weight: 600;
     margin-bottom: 8px;
 }
 
@@ -580,23 +583,25 @@ body {
     width: 100%;
     padding: 14px 16px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #1f2937;
     font-size: 14px;
     outline: none;
-    transition: border-color 0.2s;
+    transition: all 0.2s;
 }
 
 .booking-form input:focus,
 .booking-form select:focus,
 .booking-form textarea:focus {
-    border-color: rgba(6, 182, 212, 0.5);
+    border-color: #06b6d4;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
 }
 
 .booking-form input::placeholder,
 .booking-form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+    color: #9ca3af;
 }
 
 .booking-form textarea {
@@ -606,9 +611,9 @@ body {
 .price-estimate {
     margin: 24px 0;
     padding: 20px;
-    border-radius: 12px;
-    background: rgba(6, 182, 212, 0.1);
-    border: 1px solid rgba(6, 182, 212, 0.2);
+    border-radius: 16px;
+    background: linear-gradient(135deg, #ecfeff, #cffafe);
+    border: 1px solid #67e8f9;
 }
 
 .price-info {
@@ -619,19 +624,20 @@ body {
 
 .price-label {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
+    color: #0e7490;
     margin-bottom: 4px;
+    font-weight: 500;
 }
 
 .price-value {
     font-size: 32px;
-    font-weight: 700;
-    color: #06b6d4;
+    font-weight: 800;
+    color: #0891b2;
 }
 
 .price-note {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
+    color: #0e7490;
     text-align: right;
 }
 
@@ -655,15 +661,17 @@ body {
 .contact-card,
 .features-card {
     padding: 24px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .contact-card h3,
 .features-card h3 {
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 16px;
+    color: #0f172a;
 }
 
 .contact-links {
@@ -678,23 +686,25 @@ body {
     gap: 12px;
     padding: 16px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
+    background: #f8fafc;
     text-decoration: none;
-    color: white;
-    transition: background-color 0.2s;
+    color: #1f2937;
+    transition: all 0.2s;
+    border: 1px solid #e2e8f0;
 }
 
 .contact-link:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #f1f5f9;
+    transform: translateY(-1px);
 }
 
 .contact-link.whatsapp {
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    background: #ecfdf5;
+    border-color: #d1fae5;
 }
 
 .contact-link.whatsapp:hover {
-    background: rgba(16, 185, 129, 0.2);
+    background: #d1fae5;
 }
 
 .contact-icon {
@@ -703,15 +713,16 @@ body {
 
 .contact-label {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.contact-value {
+    color: #64748b;
     font-weight: 500;
 }
 
+.contact-value {
+    font-weight: 600;
+}
+
 .contact-link.whatsapp .contact-value {
-    color: #10b981;
+    color: #059669;
 }
 
 .features-list {
@@ -722,7 +733,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: rgba(255, 255, 255, 0.7);
+    color: #64748b;
     margin-bottom: 12px;
 }
 
@@ -731,19 +742,19 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: rgba(6, 182, 212, 0.2);
-    color: #06b6d4;
+    background: #ecfeff;
+    color: #0891b2;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 /* FAQ Section */
 .faq {
     padding: 96px 0;
-    background: linear-gradient(180deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+    background: #f8fafc;
 }
 
 .faq .container {
@@ -759,9 +770,10 @@ body {
 .faq-item {
     padding: 20px;
     border-radius: 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: white;
+    border: 1px solid #e2e8f0;
     cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .faq-item summary {
@@ -770,11 +782,12 @@ body {
     justify-content: space-between;
     align-items: center;
     list-style: none;
+    color: #0f172a;
 }
 
 .faq-item summary::after {
     content: '+';
-    color: rgba(255, 255, 255, 0.3);
+    color: #64748b;
     font-size: 20px;
     transition: transform 0.2s;
 }
@@ -785,35 +798,38 @@ body {
 
 .faq-item p {
     margin-top: 16px;
-    color: rgba(255, 255, 255, 0.6);
+    color: #64748b;
     line-height: 1.6;
 }
 
 /* CTA Section */
 .cta {
     padding: 96px 0;
+    background: white;
 }
 
 .cta-card {
     text-align: center;
     padding: 48px;
     border-radius: 24px;
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(37, 99, 235, 0.2));
-    border: 1px solid rgba(6, 182, 212, 0.2);
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+    border: 1px solid #bae6fd;
 }
 
 .cta-card h2 {
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 16px;
+    color: #0f172a;
 }
 
 .cta-card p {
-    color: rgba(255, 255, 255, 0.6);
+    color: #64748b;
     margin-bottom: 32px;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    font-size: 18px;
 }
 
 .cta-buttons {
@@ -825,8 +841,9 @@ body {
 
 /* Footer */
 .footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid #e2e8f0;
     padding: 48px 0;
+    background: #f8fafc;
 }
 
 .footer-content {
@@ -849,19 +866,20 @@ body {
 }
 
 .footer-links a {
-    color: rgba(255, 255, 255, 0.5);
+    color: #64748b;
     text-decoration: none;
     font-size: 14px;
+    font-weight: 500;
     transition: color 0.2s;
 }
 
 .footer-links a:hover {
-    color: white;
+    color: #1f2937;
 }
 
 .footer-copyright {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.4);
+    color: #9ca3af;
 }
 
 /* Responsive Design */
@@ -918,11 +936,6 @@ body {
         grid-template-columns: 1fr;
     }
     
-    .rate-sheet-card {
-        flex-direction: column;
-        text-align: center;
-    }
-    
     .cta-card h2 {
         font-size: 32px;
     }
@@ -960,20 +973,20 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Hide scrollbar but keep functionality */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: #cbd5e1;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: #94a3b8;
 }

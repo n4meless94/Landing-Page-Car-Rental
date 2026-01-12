@@ -2,19 +2,19 @@
 const WHATSAPP_NUMBER = "60178355503";
 
 const cars = [
-    { name: "Proton Saga 1.3", daily: 130, package3: 370, units: 3, category: "economy", seats: 5 },
-    { name: "Proton Persona 1.6", daily: 140, package3: 400, units: 1, category: "economy", seats: 5 },
-    { name: "Perodua Bezza 1.3", daily: 140, package3: 400, units: 3, category: "economy", seats: 5 },
-    { name: "Honda City 1.5", daily: 200, package3: 540, units: 2, category: "sedan", seats: 5 },
-    { name: "Toyota Vios 1.5", daily: 200, package3: 540, units: 2, category: "sedan", seats: 5 },
-    { name: "Perodua Alza", daily: 200, package3: 570, units: 3, category: "mpv", seats: 7 },
-    { name: "Mitsubishi Xpander", daily: 220, package3: 600, units: 3, category: "mpv", seats: 7 },
-    { name: "Proton X90", daily: 380, package3: 1100, units: 1, category: "suv", seats: 7 },
-    { name: "Toyota Fortuner", daily: 480, package3: 1350, units: 1, category: "suv", seats: 7 },
-    { name: "Hyundai Staria", daily: 550, package3: 1570, units: 3, category: "premium", seats: 11 },
-    { name: "Hyundai Starex", daily: 550, package3: 1570, units: 2, category: "premium", seats: 11 },
-    { name: "Toyota Vellfire", daily: 750, package3: 2200, units: 1, category: "premium", seats: 7 },
-    { name: "Toyota Alphard", daily: 800, package3: 2300, units: 1, category: "premium", seats: 7 },
+    { name: "Proton Saga 1.3", daily: 130, package3: 370, units: 3, category: "economy", seats: 5, image: "cars/proton-saga.jpg" },
+    { name: "Proton Persona 1.6", daily: 140, package3: 400, units: 1, category: "economy", seats: 5, image: "cars/proton-persona.jpg" },
+    { name: "Perodua Bezza 1.3", daily: 140, package3: 400, units: 3, category: "economy", seats: 5, image: "cars/perodua-bezza.jpg" },
+    { name: "Honda City 1.5", daily: 200, package3: 540, units: 2, category: "sedan", seats: 5, image: "cars/honda-city.jpg" },
+    { name: "Toyota Vios 1.5", daily: 200, package3: 540, units: 2, category: "sedan", seats: 5, image: "cars/toyota-vios.jpg" },
+    { name: "Perodua Alza", daily: 200, package3: 570, units: 3, category: "mpv", seats: 7, image: "cars/perodua-alza.jpg" },
+    { name: "Mitsubishi Xpander", daily: 220, package3: 600, units: 3, category: "mpv", seats: 7, image: "cars/mitsubishi-xpander.jpg" },
+    { name: "Proton X90", daily: 380, package3: 1100, units: 1, category: "suv", seats: 7, image: "cars/proton-x90.jpg" },
+    { name: "Toyota Fortuner", daily: 480, package3: 1350, units: 1, category: "suv", seats: 7, image: "cars/toyota-fortuner.jpg" },
+    { name: "Hyundai Staria", daily: 550, package3: 1570, units: 3, category: "premium", seats: 11, image: "cars/hyundai-staria.jpg" },
+    { name: "Hyundai Starex", daily: 550, package3: 1570, units: 2, category: "premium", seats: 11, image: "cars/hyundai-starex.jpg" },
+    { name: "Toyota Vellfire", daily: 750, package3: 2200, units: 1, category: "premium", seats: 7, image: "cars/toyota-vellfire.jpg" },
+    { name: "Toyota Alphard", daily: 800, package3: 2300, units: 1, category: "premium", seats: 7, image: "cars/toyota-alphard.jpg" },
 ];
 
 // Utility functions
@@ -73,6 +73,10 @@ function renderCars(carsToRender) {
     
     carsGrid.innerHTML = carsToRender.map(car => `
         <div class="car-card" data-category="${car.category}">
+            <div class="car-image">
+                <img src="${car.image}" alt="${car.name}" onerror="this.style.display='none'; this.parentNode.innerHTML='Car Image';" />
+            </div>
+            
             <div class="car-header">
                 <div>
                     <span class="car-category ${car.category}">${car.category}</span>
