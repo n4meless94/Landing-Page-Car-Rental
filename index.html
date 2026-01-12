@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1220" />
+    <title>Kinabalu Car Rental — Book via WhatsApp</title>
+    <meta
+      name="description"
+      content="Modern car rental landing page for Kota Kinabalu. Browse rates and book instantly via WhatsApp."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="brand-mark">K</span>
+          <span class="brand-text">
+            <span class="brand-title">Kinabalu Car Rental</span>
+            <span class="brand-subtitle">Fast WhatsApp Booking</span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="#rates">Rates</a>
+          <a href="#how">How it works</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn btn-primary btn-small" href="#book">Book Now</a>
+        </nav>
+
+        <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="mobile-nav" hidden>
+        <a href="#rates">Rates</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="#book">Book Now</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="badge">Visit Kinabalu • Trusted local rental</p>
+            <h1>Rent a car in Kota Kinabalu. Book in 30 seconds via WhatsApp.</h1>
+            <p class="lead">
+              Clear rates, multiple car options, and quick confirmation. Tap “Book via WhatsApp”
+              and we’ll reply with availability.
+            </p>
+
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#book">Book via WhatsApp</a>
+              <a class="btn btn-ghost" href="#rates">See rates</a>
+            </div>
+
+            <div class="hero-meta" role="list">
+              <div class="meta-item" role="listitem">
+                <span class="meta-k">Phone</span>
+                <a class="meta-v" href="tel:+60178355503">+60 17-835 5503</a>
+              </div>
+              <div class="meta-item" role="listitem">
+                <span class="meta-k">Email</span>
+                <a class="meta-v" href="mailto:eeanenterprise@gmail.com">eeanenterprise@gmail.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-media" aria-label="Car rental promo">
+            <div class="media-card">
+              <img
+                src="Image (8).jpg"
+                alt="Kinabalu car rental promo poster"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-glow" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" id="rates">
+        <div class="container">
+          <div class="section-head">
+            <h2>Rates & vehicles</h2>
+            <p class="muted">
+              Daily rates and 3+ day package rates. Availability may change — confirm on WhatsApp.
+            </p>
+          </div>
+
+          <div class="rates-grid" id="ratesGrid" aria-label="Rate cards"></div>
+
+          <div class="rates-note">
+            <div class="note-card">
+              <div>
+                <h3 class="note-title">Prefer the full table?</h3>
+                <p class="muted">Here’s the official rate sheet image.</p>
+              </div>
+              <a class="btn btn-ghost" href="Image (9).jpg" target="_blank" rel="noreferrer">Open rate sheet</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <div class="container">
+          <div class="section-head">
+            <h2>How booking works</h2>
+            <p class="muted">Simple steps — no complicated forms.</p>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <h3>Select your car</h3>
+              <p class="muted">Choose from the list and pick your dates.</p>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <h3>Tap WhatsApp</h3>
+              <p class="muted">We’ll auto-fill a message — just send it.</p>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <h3>Get confirmation</h3>
+              <p class="muted">We’ll reply with availability and next steps.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="book">
+        <div class="container">
+          <div class="book-card">
+            <div class="book-left">
+              <h2>Book via WhatsApp</h2>
+              <p class="muted">Fill what you can — we’ll confirm the rest.</p>
+
+              <form class="form" id="bookingForm">
+                <div class="form-row">
+                  <label>
+                    Car type
+                    <select name="car" id="carSelect" required></select>
+                  </label>
+                  <label>
+                    Rental days
+                    <input name="days" id="daysInput" type="number" min="1" step="1" value="3" required />
+                  </label>
+                </div>
+
+                <div class="form-row">
+                  <label>
+                    Start date
+                    <input name="start" id="startDate" type="date" />
+                  </label>
+                  <label>
+                    End date
+                    <input name="end" id="endDate" type="date" />
+                  </label>
+                </div>
+
+                <div class="form-row">
+                  <label>
+                    Pickup location
+                    <input name="pickup" id="pickupInput" type="text" placeholder="Airport / Hotel / City" />
+                  </label>
+                  <label>
+                    Drop-off location
+                    <input name="dropoff" id="dropoffInput" type="text" placeholder="Same as pickup?" />
+                  </label>
+                </div>
+
+                <label>
+                  Notes
+                  <textarea
+                    name="notes"
+                    id="notesInput"
+                    rows="3"
+                    placeholder="Example: flight time, child seat request, etc."
+                  ></textarea>
+                </label>
+
+                <div class="form-actions">
+                  <button class="btn btn-primary" type="submit">Open WhatsApp</button>
+                  <button class="btn btn-ghost" type="button" id="copyMessageBtn">Copy message</button>
+                </div>
+
+                <p class="fineprint" id="estimateLine" aria-live="polite"></p>
+              </form>
+            </div>
+
+            <div class="book-right" aria-label="Contact">
+              <div class="contact-tile">
+                <h3>Direct contact</h3>
+                <p class="muted">Prefer to message manually?</p>
+
+                <div class="contact-actions">
+                  <a
+                    class="btn btn-ghost"
+                    id="waDirectBtn"
+                    href="#"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    WhatsApp: +60 17-835 5503
+                  </a>
+                  <a class="btn btn-ghost" href="mailto:eeanenterprise@gmail.com">Email: eeanenterprise@gmail.com</a>
+                </div>
+
+                <div class="contact-note">
+                  <p class="muted">
+                    Tip: tell us your dates + pickup location for the fastest reply.
+                  </p>
+                </div>
+              </div>
+
+              <div class="trust-tile">
+                <h3>Why people choose us</h3>
+                <ul class="checklist">
+                  <li>Fast WhatsApp response</li>
+                  <li>Transparent rates</li>
+                  <li>Multiple vehicle options</li>
+                  <li>Local Kinabalu service</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-head">
+            <h2>FAQ</h2>
+            <p class="muted">Quick answers to common questions.</p>
+          </div>
+
+          <div class="faq">
+            <details>
+              <summary>Is availability guaranteed?</summary>
+              <p class="muted">No — it depends on dates and current bookings. WhatsApp us to confirm.</p>
+            </details>
+            <details>
+              <summary>Do you offer 3+ day packages?</summary>
+              <p class="muted">Yes. The form will show a 3+ day estimate when applicable.</p>
+            </details>
+            <details>
+              <summary>Can I request pickup/drop-off locations?</summary>
+              <p class="muted">Yes — add your location details in the booking message.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container footer-inner">
+          <p class="muted">© <span id="year"></span> Kinabalu Car Rental. All rights reserved.</p>
+          <div class="footer-links">
+            <a href="#top">Back to top</a>
+            <a href="#book">Book</a>
+            <a href="#rates">Rates</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
