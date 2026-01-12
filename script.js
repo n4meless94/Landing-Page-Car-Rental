@@ -1,259 +1,295 @@
-(() => {
-  const WHATSAPP_NUMBER_E164_NO_PLUS = "60178355503";
+// Car rental data
+const WHATSAPP_NUMBER = "60178355503";
 
-  const rateData = [
-    { name: "Proton Saga 1.3", daily: 130, package3: 370, units: 3 },
-    { name: "Proton Persona 1.6", daily: 140, package3: 400, units: 1 },
-    { name: "Perodua Bezza 1.3", daily: 140, package3: 400, units: 3 },
-    { name: "Honda City 1.5", daily: 200, package3: 540, units: 2 },
-    { name: "Toyota Vios 1.5", daily: 200, package3: 540, units: 2 },
-    { name: "Perodua Alza", daily: 200, package3: 570, units: 3 },
-    { name: "Mitsubishi Xpander", daily: 220, package3: 600, units: 3 },
-    { name: "Proton X90", daily: 380, package3: 1100, units: 1 },
-    { name: "Toyota Fortuner", daily: 480, package3: 1350, units: 1 },
-    { name: "Hyundai Staria", daily: 550, package3: 1570, units: 3 },
-    { name: "Hyundai Starex", daily: 550, package3: 1570, units: 2 },
-    { name: "Toyota Vellfire", daily: 750, package3: 2200, units: 1 },
-    { name: "Toyota Alphard", daily: 800, package3: 2300, units: 1 },
-  ];
+const cars = [
+    { name: "Proton Saga 1.3", daily: 130, package3: 370, units: 3, category: "economy", seats: 5 },
+    { name: "Proton Persona 1.6", daily: 140, package3: 400, units: 1, category: "economy", seats: 5 },
+    { name: "Perodua Bezza 1.3", daily: 140, package3: 400, units: 3, category: "economy", seats: 5 },
+    { name: "Honda City 1.5", daily: 200, package3: 540, units: 2, category: "sedan", seats: 5 },
+    { name: "Toyota Vios 1.5", daily: 200, package3: 540, units: 2, category: "sedan", seats: 5 },
+    { name: "Perodua Alza", daily: 200, package3: 570, units: 3, category: "mpv", seats: 7 },
+    { name: "Mitsubishi Xpander", daily: 220, package3: 600, units: 3, category: "mpv", seats: 7 },
+    { name: "Proton X90", daily: 380, package3: 1100, units: 1, category: "suv", seats: 7 },
+    { name: "Toyota Fortuner", daily: 480, package3: 1350, units: 1, category: "suv", seats: 7 },
+    { name: "Hyundai Staria", daily: 550, package3: 1570, units: 3, category: "premium", seats: 11 },
+    { name: "Hyundai Starex", daily: 550, package3: 1570, units: 2, category: "premium", seats: 11 },
+    { name: "Toyota Vellfire", daily: 750, package3: 2200, units: 1, category: "premium", seats: 7 },
+    { name: "Toyota Alphard", daily: 800, package3: 2300, units: 1, category: "premium", seats: 7 },
+];
 
-  const formatRM = (value) => `RM ${Number(value).toFixed(2)}`;
+// Utility functions
+const formatRM = (amount) => `RM ${amount.toLocaleString()}`;
 
-  const buildWhatsAppUrl = (message) => {
-    const base = `https://wa.me/${WHATSAPP_NUMBER_E164_NO_PLUS}`;
-    const text = encodeURIComponent(message);
-    return `${base}?text=${text}`;
-  };
+const buildWhatsAppUrl = (message) => {
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+};
 
-  const safeVal = (v) => (v && String(v).trim() ? String(v).trim() : "-");
-
-  const estimatePrice = (car, days) => {
-    if (!car || !Number.isFinite(days) || days <= 0) return null;
-
+const calculatePrice = (car, days) => {
+    if (!car || days <= 0) return null;
     if (days >= 3) {
-      // If days > 3, keep it simple: use package3 + extra days at daily.
-      const extraDays = Math.max(0, days - 3);
-      return car.package3 + extraDays * car.daily;
+        return car.package3 + Math.max(0, days - 3) * car.daily;
     }
-
     return days * car.daily;
-  };
+};
 
-  const initHeaderMenu = () => {
-    const menuBtn = document.querySelector(".menu-button");
-    const mobileNav = document.querySelector(".mobile-nav");
-    if (!menuBtn || !mobileNav) return;
+// DOM elements
+let selectedCar = cars[0];
+let selectedDays = 3;
 
-    const close = () => {
-      menuBtn.setAttribute("aria-expanded", "false");
-      mobileNav.hidden = true;
-    };
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    initializeFleet();
+    initializeBookingForm();
+    initializeEventListeners();
+    updateCurrentYear();
+});
 
-    const open = () => {
-      menuBtn.setAttribute("aria-expanded", "true");
-      mobileNav.hidden = false;
-    };
-
-    menuBtn.addEventListener("click", () => {
-      const expanded = menuBtn.getAttribute("aria-expanded") === "true";
-      if (expanded) close();
-      else open();
+// Initialize fleet section
+function initializeFleet() {
+    const carsGrid = document.getElementById('carsGrid');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    
+    // Render all cars initially
+    renderCars(cars);
+    
+    // Add filter functionality
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Update active tab
+            filterTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Filter cars
+            const filter = tab.dataset.filter;
+            const filteredCars = filter === 'all' ? cars : cars.filter(car => car.category === filter);
+            renderCars(filteredCars);
+        });
     });
+}
 
-    mobileNav.addEventListener("click", (e) => {
-      const target = e.target;
-      if (target instanceof HTMLAnchorElement) close();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") close();
-    });
-  };
-
-  const initRates = () => {
-    const grid = document.getElementById("ratesGrid");
-    if (!grid) return;
-
-    grid.innerHTML = rateData
-      .map((car) => {
-        const unitsLabel = car.units === 1 ? "1 unit" : `${car.units} units`;
-
-        const bookPayload = {
-          car: car.name,
-          days: 3,
-        };
-
-        return `
-          <article class="card">
-            <div class="card-top">
-              <div>
-                <h3>${car.name}</h3>
-                <div class="muted" style="margin-top:6px;font-size:13px">Available: ${unitsLabel}</div>
-              </div>
-              <span class="pill">From ${formatRM(car.daily)}/day</span>
+// Render cars in the grid
+function renderCars(carsToRender) {
+    const carsGrid = document.getElementById('carsGrid');
+    
+    carsGrid.innerHTML = carsToRender.map(car => `
+        <div class="car-card" data-category="${car.category}">
+            <div class="car-header">
+                <div>
+                    <span class="car-category ${car.category}">${car.category}</span>
+                    <h3 class="car-name">${car.name}</h3>
+                    <p class="car-details">${car.seats} seats • ${car.units} unit${car.units > 1 ? 's' : ''}</p>
+                </div>
             </div>
-
-            <div class="prices">
-              <div class="price">
-                <span class="label">Daily rate</span>
-                <span class="value">${formatRM(car.daily)}</span>
-              </div>
-              <div class="price">
-                <span class="label">3+ days package</span>
-                <span class="value">${formatRM(car.package3)}</span>
-              </div>
+            
+            <div class="car-pricing">
+                <div class="price-box">
+                    <div class="price-label">Daily</div>
+                    <div class="price-value">${formatRM(car.daily)}</div>
+                </div>
+                <div class="price-box">
+                    <div class="price-label">3+ Days</div>
+                    <div class="price-value">${formatRM(car.package3)}</div>
+                </div>
             </div>
-
-            <div class="card-actions">
-              <a class="btn btn-ghost" href="#book" data-prefill='${JSON.stringify(bookPayload)}'>Book this car</a>
-              <a class="btn btn-primary" href="${buildWhatsAppUrl(
-                `Hi! I want to book ${car.name}.\nDates: -\nPickup: -\nDrop-off: -\nThank you!`
-              )}" target="_blank" rel="noreferrer">WhatsApp</a>
+            
+            <div class="car-actions">
+                <button class="btn btn-ghost select-car-btn" data-car="${car.name}">Select</button>
+                <a href="${buildWhatsAppUrl(`Hi! I want to book ${car.name}.\\nDates: -\\nPickup: -\\nThank you!`)}" 
+                   target="_blank" class="btn btn-primary">WhatsApp</a>
             </div>
-          </article>
-        `;
-      })
-      .join("");
-
-    grid.addEventListener("click", (e) => {
-      const el = e.target;
-      if (!(el instanceof HTMLElement)) return;
-      const link = el.closest("[data-prefill]");
-      if (!(link instanceof HTMLElement)) return;
-
-      try {
-        const payload = JSON.parse(link.getAttribute("data-prefill") || "{}") || {};
-        const carSelect = document.getElementById("carSelect");
-        const daysInput = document.getElementById("daysInput");
-        if (carSelect && payload.car) carSelect.value = payload.car;
-        if (daysInput && payload.days) daysInput.value = String(payload.days);
-
-        setTimeout(() => {
-          document.getElementById("book")?.scrollIntoView({ behavior: "smooth" });
-        }, 0);
-
-        updateEstimate();
-      } catch {
-        // no-op
-      }
+        </div>
+    `).join('');
+    
+    // Add event listeners to select buttons
+    document.querySelectorAll('.select-car-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const carName = e.target.dataset.car;
+            selectedCar = cars.find(car => car.name === carName);
+            selectedDays = 3;
+            
+            // Update form
+            document.getElementById('carSelect').value = carName;
+            document.getElementById('daysInput').value = 3;
+            updatePriceEstimate();
+            
+            // Scroll to booking form
+            document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+        });
     });
-  };
+}
 
-  const initBooking = () => {
-    const form = document.getElementById("bookingForm");
-    const carSelect = document.getElementById("carSelect");
-    const waDirectBtn = document.getElementById("waDirectBtn");
-    const copyBtn = document.getElementById("copyMessageBtn");
+// Initialize booking form
+function initializeBookingForm() {
+    const carSelect = document.getElementById('carSelect');
+    const daysInput = document.getElementById('daysInput');
+    
+    // Populate car select
+    carSelect.innerHTML = cars.map(car => 
+        `<option value="${car.name}">${car.name} - ${formatRM(car.daily)}/day</option>`
+    ).join('');
+    
+    // Set initial values
+    carSelect.value = selectedCar.name;
+    daysInput.value = selectedDays;
+    
+    // Add event listeners for price updates
+    const formInputs = ['carSelect', 'daysInput', 'startDate', 'endDate', 'pickupInput', 'dropoffInput', 'notesInput'];
+    formInputs.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener('input', updatePriceEstimate);
+            element.addEventListener('change', updatePriceEstimate);
+        }
+    });
+    
+    // Initial price update
+    updatePriceEstimate();
+}
 
-    if (!(carSelect instanceof HTMLSelectElement)) return;
-
-    // populate select
-    carSelect.innerHTML = rateData
-      .map((c) => `<option value="${c.name}">${c.name}</option>`)
-      .join("");
-
-    if (waDirectBtn instanceof HTMLAnchorElement) {
-      waDirectBtn.href = buildWhatsAppUrl("Hi! I want to rent a car in Kota Kinabalu. Please share availability & rates.");
+// Update price estimate
+function updatePriceEstimate() {
+    const carName = document.getElementById('carSelect').value;
+    const days = parseInt(document.getElementById('daysInput').value) || 0;
+    
+    selectedCar = cars.find(car => car.name === carName);
+    selectedDays = days;
+    
+    const price = calculatePrice(selectedCar, days);
+    const priceEstimate = document.getElementById('priceEstimate');
+    const priceValue = document.getElementById('priceValue');
+    const daysNote = document.getElementById('daysNote');
+    
+    if (price && days > 0) {
+        priceEstimate.style.display = 'block';
+        priceValue.textContent = formatRM(price);
+        daysNote.textContent = `${days} day${days > 1 ? 's' : ''}`;
+    } else {
+        priceEstimate.style.display = 'none';
     }
+}
 
-    const inputs = [
-      "daysInput",
-      "startDate",
-      "endDate",
-      "pickupInput",
-      "dropoffInput",
-      "notesInput",
-      "carSelect",
-    ]
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    inputs.forEach((input) => {
-      input.addEventListener("input", updateEstimate);
-      input.addEventListener("change", updateEstimate);
-    });
-
-    const buildMessageFromForm = () => {
-      const selectedCar = rateData.find((c) => c.name === carSelect.value);
-      const days = Number(document.getElementById("daysInput")?.value || 0);
-      const start = safeVal(document.getElementById("startDate")?.value);
-      const end = safeVal(document.getElementById("endDate")?.value);
-      const pickup = safeVal(document.getElementById("pickupInput")?.value);
-      const dropoff = safeVal(document.getElementById("dropoffInput")?.value);
-      const notes = safeVal(document.getElementById("notesInput")?.value);
-
-      const estimate = estimatePrice(selectedCar, days);
-      const estimateLine = estimate != null ? `Estimated rate: ${formatRM(estimate)} (subject to confirmation)` : "";
-
-      return [
-        `Hi! I want to book a car rental in Kota Kinabalu.`,
-        `Car: ${safeVal(carSelect.value)}`,
-        `Days: ${Number.isFinite(days) && days > 0 ? days : "-"}`,
-        `Start date: ${start}`,
-        `End date: ${end}`,
+// Build booking message
+function buildBookingMessage() {
+    const carName = document.getElementById('carSelect').value;
+    const days = document.getElementById('daysInput').value;
+    const startDate = document.getElementById('startDate').value || '-';
+    const endDate = document.getElementById('endDate').value || '-';
+    const pickup = document.getElementById('pickupInput').value || '-';
+    const dropoff = document.getElementById('dropoffInput').value || '-';
+    const notes = document.getElementById('notesInput').value;
+    
+    const car = cars.find(c => c.name === carName);
+    const price = calculatePrice(car, parseInt(days));
+    
+    let message = [
+        "Hi! I'd like to book a car rental in Kota Kinabalu.",
+        `Car: ${carName}`,
+        `Days: ${days}`,
+        `Start: ${startDate}`,
+        `End: ${endDate}`,
         `Pickup: ${pickup}`,
-        `Drop-off: ${dropoff}`,
-        notes !== "-" ? `Notes: ${notes}` : null,
-        estimateLine ? `${estimateLine}` : null,
-        `Thank you!`,
-      ]
-        .filter(Boolean)
-        .join("\n");
-    };
-
-    form?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const message = buildMessageFromForm();
-      window.open(buildWhatsAppUrl(message), "_blank", "noopener,noreferrer");
-    });
-
-    copyBtn?.addEventListener("click", async () => {
-      const message = buildMessageFromForm();
-      try {
-        await navigator.clipboard.writeText(message);
-        copyBtn.textContent = "Copied!";
-        setTimeout(() => (copyBtn.textContent = "Copy message"), 1200);
-      } catch {
-        // fallback
-        const ta = document.createElement("textarea");
-        ta.value = message;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-        copyBtn.textContent = "Copied!";
-        setTimeout(() => (copyBtn.textContent = "Copy message"), 1200);
-      }
-    });
-
-    updateEstimate();
-  };
-
-  const updateEstimate = () => {
-    const carName = document.getElementById("carSelect")?.value;
-    const days = Number(document.getElementById("daysInput")?.value || 0);
-    const estimateLine = document.getElementById("estimateLine");
-
-    const car = rateData.find((c) => c.name === carName);
-    const estimate = estimatePrice(car, days);
-
-    if (!estimateLine) return;
-
-    if (estimate == null) {
-      estimateLine.textContent = "";
-      return;
+        `Drop-off: ${dropoff}`
+    ];
+    
+    if (notes.trim()) {
+        message.push(`Notes: ${notes}`);
     }
+    
+    if (price) {
+        message.push(`Estimated: ${formatRM(price)} (subject to confirmation)`);
+    }
+    
+    message.push("Thank you!");
+    
+    return message.join('\n');
+}
 
-    estimateLine.textContent = `Estimated rate: ${formatRM(estimate)} (subject to confirmation)`;
-  };
+// Initialize event listeners
+function initializeEventListeners() {
+    // Booking form submission
+    document.getElementById('bookingForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const message = buildBookingMessage();
+        window.open(buildWhatsAppUrl(message), '_blank');
+    });
+    
+    // Copy message button
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+        const message = buildBookingMessage();
+        try {
+            await navigator.clipboard.writeText(message);
+            const btn = document.getElementById('copyBtn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy message:', err);
+        }
+    });
+    
+    // Direct WhatsApp links
+    const directWhatsApp = document.getElementById('directWhatsApp');
+    const ctaWhatsApp = document.getElementById('ctaWhatsApp');
+    
+    const directMessage = "Hi! I want to rent a car in Kota Kinabalu. Please share availability.";
+    
+    if (directWhatsApp) {
+        directWhatsApp.href = buildWhatsAppUrl(directMessage);
+    }
+    
+    if (ctaWhatsApp) {
+        ctaWhatsApp.href = buildWhatsAppUrl(directMessage);
+    }
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
 
-  const initYear = () => {
-    const el = document.getElementById("year");
-    if (el) el.textContent = String(new Date().getFullYear());
-  };
+// Update current year in footer
+function updateCurrentYear() {
+    const yearElement = document.getElementById('currentYear');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
 
-  initHeaderMenu();
-  initRates();
-  initBooking();
-  initYear();
-})();
+// Add some interactive animations
+function addScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    document.querySelectorAll('.car-card, .step, .faq-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// Initialize scroll animations after page load
+window.addEventListener('load', addScrollAnimations);
