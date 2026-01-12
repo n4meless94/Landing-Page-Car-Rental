@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eean Enterprise Car Rental - Kota Kinabalu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2.0">
+    <!-- Light theme version -->
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">E</div>
+                    <div class="logo-text">
+                        <div class="logo-title">Eean Enterprise</div>
+                        <div class="logo-subtitle">Car Rental Kota Kinabalu</div>
+                    </div>
+                </a>
+                
+                <nav class="nav">
+                    <a href="#fleet">Fleet</a>
+                    <a href="#how">How It Works</a>
+                    <a href="#faq">FAQ</a>
+                </nav>
+                
+                <a href="#book" class="btn btn-primary">Book Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="badge">
+                        <span class="badge-dot"></span>
+                        Trusted Local Rental in Sabah
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Rent Your<br>
+                        <span class="gradient-text">Perfect Ride</span>
+                    </h1>
+                    
+                    <p class="hero-desc">
+                        Explore Kota Kinabalu with ease. Choose from our fleet of well-maintained vehicles and book instantly via WhatsApp.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#book" class="btn btn-primary btn-large">Book via WhatsApp</a>
+                        <a href="#fleet" class="btn btn-ghost btn-large">View Fleet</a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-value">13+</div>
+                            <div class="stat-label">Vehicles</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">RM130</div>
+                            <div class="stat-label">From/day</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <div class="hero-image">
+                        <img src="Image (8).jpg" alt="Car rental promo" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stats-item">
+                    <div class="stats-icon">🚗</div>
+                    <div class="stats-value">From RM130</div>
+                    <div class="stats-label">Economy Cars</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-icon">🚙</div>
+                    <div class="stats-value">From RM200</div>
+                    <div class="stats-label">SUVs & MPVs</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-icon">✨</div>
+                    <div class="stats-value">From RM550</div>
+                    <div class="stats-label">Premium Fleet</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-icon">📱</div>
+                    <div class="stats-value">Instant Reply</div>
+                    <div class="stats-label">WhatsApp Booking</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section id="fleet" class="fleet">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Fleet</h2>
+                <p>From budget-friendly economy cars to premium luxury vehicles. All well-maintained and ready for your journey.</p>
+            </div>
+            
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All Vehicles</button>
+                <button class="filter-tab" data-filter="economy">Economy</button>
+                <button class="filter-tab" data-filter="sedan">Sedan</button>
+                <button class="filter-tab" data-filter="mpv">MPV</button>
+                <button class="filter-tab" data-filter="suv">SUV</button>
+                <button class="filter-tab" data-filter="premium">Premium</button>
+            </div>
+            
+            <div class="cars-grid" id="carsGrid">
+                <!-- Cars will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Book your car in 3 simple steps</p>
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3>Choose Your Car</h3>
+                    <p>Browse our fleet and select the perfect vehicle for your needs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3>Send via WhatsApp</h3>
+                    <p>Fill in your details and we'll prepare a message for you to send.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3>Get Confirmation</h3>
+                    <p>We'll reply quickly with availability and pickup details.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="book" class="booking">
+        <div class="container">
+            <div class="booking-grid">
+                <div class="booking-form">
+                    <h2>Book Your Ride</h2>
+                    <p>Fill in the details and we'll prepare your WhatsApp message</p>
+                    
+                    <form id="bookingForm">
+                        <div class="form-row">
+                            <label>
+                                <span>Select Car</span>
+                                <select id="carSelect" required></select>
+                            </label>
+                            <label>
+                                <span>Rental Days</span>
+                                <input type="number" id="daysInput" min="1" value="3" required>
+                            </label>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>
+                                <span>Start Date</span>
+                                <input type="date" id="startDate">
+                            </label>
+                            <label>
+                                <span>End Date</span>
+                                <input type="date" id="endDate">
+                            </label>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>
+                                <span>Pickup Location</span>
+                                <input type="text" id="pickupInput" placeholder="Airport, Hotel, City...">
+                            </label>
+                            <label>
+                                <span>Drop-off Location</span>
+                                <input type="text" id="dropoffInput" placeholder="Same as pickup?">
+                            </label>
+                        </div>
+                        
+                        <label>
+                            <span>Additional Notes</span>
+                            <textarea id="notesInput" rows="3" placeholder="Flight time, child seat, special requests..."></textarea>
+                        </label>
+                        
+                        <div id="priceEstimate" class="price-estimate" style="display: none;">
+                            <div class="price-info">
+                                <div>
+                                    <div class="price-label">Estimated Total</div>
+                                    <div class="price-value" id="priceValue"></div>
+                                </div>
+                                <div class="price-note">
+                                    <span id="daysNote"></span><br>
+                                    Subject to confirmation
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">Open WhatsApp</button>
+                            <button type="button" id="copyBtn" class="btn btn-ghost btn-large">Copy</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="booking-sidebar">
+                    <div class="contact-card">
+                        <h3>Contact Us Directly</h3>
+                        <div class="contact-links">
+                            <a href="tel:+60178355503" class="contact-link">
+                                <span class="contact-icon">📞</span>
+                                <div>
+                                    <div class="contact-label">Phone</div>
+                                    <div class="contact-value">+60 17-835 5503</div>
+                                </div>
+                            </a>
+                            <a href="mailto:eeanenterprise@gmail.com" class="contact-link">
+                                <span class="contact-icon">✉️</span>
+                                <div>
+                                    <div class="contact-label">Email</div>
+                                    <div class="contact-value">eeanenterprise@gmail.com</div>
+                                </div>
+                            </a>
+                            <a href="#" id="directWhatsApp" class="contact-link whatsapp">
+                                <span class="contact-icon">💬</span>
+                                <div>
+                                    <div class="contact-label">WhatsApp</div>
+                                    <div class="contact-value">Chat Now</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="features-card">
+                        <h3>Why Choose Us</h3>
+                        <ul class="features-list">
+                            <li>Fast WhatsApp response</li>
+                            <li>Transparent pricing</li>
+                            <li>Well-maintained vehicles</li>
+                            <li>Flexible pickup locations</li>
+                            <li>Local Sabah expertise</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked</h2>
+                <p>Quick answers to common questions</p>
+            </div>
+            
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Is availability guaranteed?</summary>
+                    <p>Availability depends on dates and current bookings. WhatsApp us to confirm your preferred vehicle and dates.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How does the 3+ day package work?</summary>
+                    <p>Book for 3 or more days to get our discounted package rate. Additional days beyond 3 are charged at the daily rate.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Where can I pick up the car?</summary>
+                    <p>We offer flexible pickup at Kota Kinabalu Airport, hotels, or other locations in the city. Just let us know your preference.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>What documents do I need?</summary>
+                    <p>You'll need a valid driving license and identification. International visitors should have an International Driving Permit.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is there a deposit required?</summary>
+                    <p>Yes, a refundable deposit is required. The amount varies by vehicle type. We'll confirm the details when you book.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-card">
+                <h2>Ready to Hit the Road?</h2>
+                <p>Book your car now and explore the beauty of Sabah. We're just a WhatsApp message away.</p>
+                <div class="cta-buttons">
+                    <a href="#book" class="btn btn-primary btn-large">Book Now</a>
+                    <a href="#" id="ctaWhatsApp" class="btn btn-ghost btn-large">Chat on WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">E</div>
+                    <div>
+                        <div class="logo-title">Eean Enterprise</div>
+                        <div class="logo-subtitle">Car Rental Kota Kinabalu</div>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#fleet">Fleet</a>
+                    <a href="#how">How It Works</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#book">Book</a>
+                </div>
+                
+                <div class="footer-copyright">
+                    © <span id="currentYear"></span> Eean Enterprise. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
